@@ -43,7 +43,7 @@ void handle_d(char **input_line, p *arg_s)
 
 	if (line_c[0] == '.')
 	{
-		buffer = malloc2(*input_line, arg_s, 512);
+		buffer = mallocs2(*input_line, arg_s, 512);
 		buffer[0] = '\0';
 		_strcat(buffer, &((*(arg_s->pwd))[4]));
 		length = _strlen(buffer);
@@ -113,7 +113,7 @@ int tokens(char *line_s, char *delimeter)
 
 	while (str_token)
 	{
-		str_token = _strtokokenizer(NULL, delimeter);
+		str_token = _strtokenizer(NULL, delimeter);
 		n_token++;
 	}
 	return (n_token);

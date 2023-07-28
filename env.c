@@ -75,7 +75,7 @@ char *_get_environ(char **enp, char *envir, int length)
 
 	for (i = 0; enp[i] != NULL; i++)
 	{
-		if (_strncmp(enp[i], envir, length) == 0)
+		if (_strncomp(enp[i], envir, length) == 0)
 		{
 			return (&enp[i][length + 1]);
 		}
