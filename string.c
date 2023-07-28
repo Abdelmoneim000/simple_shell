@@ -48,7 +48,7 @@ char *_strdupl(p *arg_s, char *string)
 	if (!string)
 		return (NULL);
 	length = _strlen(string);
-	copy = _malloc(arg_s, length + 1);
+	copy = _mallocs(arg_s, length + 1);
 	for (i = 0; i <= length; i++)
 	{
 		copy[i] = string[i];
