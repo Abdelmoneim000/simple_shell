@@ -34,7 +34,7 @@ int _commands_(p *arg_s)
 			_strcat(buffer, "/");
 			_strcat(buffer, arg_s->line);
 			if (access(buffer, X_OK) == 0)
-				return (_exceve(arg_s, buffer));
+				return (_excecute(arg_s, buffer));
 			path += _strlen(path) + 1;
 		}
 	_printfs("%s: %i: %s: not found\n", arg_s->shell_user, arg_s->counter, arg_s->line);
@@ -155,14 +155,14 @@ int main(int argc, char **argv, char **envp)
 		arg_s.older_pwd = _strdupl(&arg_s, &((*arg_s.pwd)[4]));
 	arg_s.shell_user = argv[0];
 	arg_s.counter = 0, arg_s.status_num = 0, arg_s.file_name = 0;
-	arg_s.pi = (int)_getpid();
+	arg_s.pi = (int)getpid();
 	arg_s.num_path = tokens(arg_s.path, ":");
 	if (argc > 1)
 	{
 		arg_s.file_name = open(argv[1], O_RDONLY);
 		if (arg_s.file_name == -1)
 		{
-			_printf("%s: 0: cannot open %s: No such file\n", argv[0], argv[1]);
+			_printfs("%s: 0: cannot open %s: No such file\n", argv[0], argv[1]);
 			free_exits(&arg_s);
 			exit(2);
 		}
@@ -173,15 +173,21 @@ while (1)
 		write(1, "=> ", 3);
 	signal(SIGINT, ctrl_c);
 	arg_s.counter++;
-	arrow = input(&arg_s, arrow, &semi_numb);
-	if (handle_input(&arg_s))
+	arrow = _inputs(&arg_s, arrow, &semi_numb);
+	if (handle_inputs(&arg_s))
+	{
 		continue;
-	arg_s.num_token = token(arg_s.line, " ");
-	if (_command_(&arg_s) == 255)
-		free_exit(&arg_s);
+	}
+	arg_s.num_token = tokens(arg_s.line, " ");
+	if (_commands_(&arg_s) == 255)
+	{
+		free_exits(&arg_s);
+	}
 }
 if (argc > 1)
+{
 	close(arg_s.file_name);
+}
 return (0);
 }
 
