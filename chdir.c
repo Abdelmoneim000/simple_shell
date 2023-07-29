@@ -1,5 +1,4 @@
 #include "main.h"
-
 /**
  * cd - change directory.
  * @arg_s: parameter of type para
@@ -23,13 +22,12 @@ int cd(p *arg_s)
 				write(1, "\n", 1);
 			}
 			else
-			{
 				desti = line;
-			}
 		}
 		if (chdir(desti) == -1)
 		{
-		_printfs("%s: %i: cd: can't cd to %s\n", arg_s->shell_user, arg_s->counter, desti);
+		_printfs("%s: %i: cd: can't cd to %s\n", arg_s->shell_user,
+				arg_s->counter, desti);
 		arg_s->status_num = 2;
 		}
 		else
@@ -62,7 +60,6 @@ void pwd_changer(p *arg_s)
 	free(*(arg_s->pwd));
 	*(arg_s->pwd) = pwd;
 }
-
 /**
  * gets_PWD - get the pwd from the env
  * @arg_s: parameter of type para.
@@ -109,7 +106,6 @@ void free_exits(p *arg_s)
 	}
 	exit(2);
 }
-
 /**
  * _mallocs - handling malloc and freeing exit if malloc failed.
  * @arg_s: parameter of type para
