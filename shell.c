@@ -175,19 +175,13 @@ while (1)
 	arg_s.counter++;
 	arrow = _inputs(&arg_s, arrow, &semi_numb);
 	if (handle_inputs(&arg_s))
-	{
 		continue;
-	}
 	arg_s.num_token = tokens(arg_s.line, " ");
 	if (_commands_(&arg_s) == 255)
-	{
 		free_exits(&arg_s);
-	}
 }
 if (argc > 1)
-{
 	close(arg_s.file_name);
-}
 return (0);
 }
 
